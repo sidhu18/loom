@@ -1,11 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import createSagaMiddleware from "redux-saga";
 import { productReducer } from "./product/product.slice";
 import rootSaga from "./root.saga";
 import { useDispatch} from 'react-redux';
 import { userReducer } from "./user/user.slice";
-
-const sagaMiddleware = createSagaMiddleware();
+import sagaMiddleware from "./saga.middleware";
 
 export const store = configureStore({
     reducer: {
