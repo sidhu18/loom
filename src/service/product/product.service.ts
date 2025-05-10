@@ -1,3 +1,5 @@
+import { Product } from "./product.type";
+
 class ProductService {
 
     static productServiceInstance: ProductService;
@@ -9,7 +11,7 @@ class ProductService {
         return new ProductService();
     }
 
-    public getAll() {
+    public getAll(): Product[] {
         return [
             {
                 id: 4,

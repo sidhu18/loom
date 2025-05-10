@@ -1,11 +1,10 @@
-import { useState } from "react"
 import { FlatList, ListRenderItem, Text, View } from "react-native"
 import type { Product } from "../../../service/product/product.type";
-import productService from "../../../service/product/product.service";
+import { shallowEqual, useSelector } from "react-redux";
+import { selectProducts } from "../../../state/product/product.selector";
 
 export const SuggestionsList: React.FC = () => {
-    const [suggestions, setSuggestions] = useState(productService.getAll());
-
+    const products = useSelector(selectProducts, shallowEqual);
     const renderListItem: ListRenderItem<Product> = ({ item }) => {
         return (<View>
             <Text>{item.title}</Text>
@@ -15,7 +14,7 @@ export const SuggestionsList: React.FC = () => {
     }
     return <View>
         <FlatList
-            data={suggestions}
+            data={products}
             renderItem={renderListItem}
             />
     </View>
