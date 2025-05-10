@@ -1,10 +1,10 @@
-import { Text } from "@react-navigation/elements";
 import { View } from "react-native";
+import { SuggestionsList } from "./components/ProductList";
 
 const HomeScreen = () => {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Home Screen</Text>
+        <SuggestionsList/>
       </View>
     );
 }
