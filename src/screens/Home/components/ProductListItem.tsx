@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native"
-import { Product } from "../../../service/product/product.type"
+import type { Product } from "../../../service/api/product/product.type";
 
 type Props = {
     data: Product,

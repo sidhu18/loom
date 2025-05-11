@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Product } from "../../service/product/product.type";
+import { Product } from "../../service/api/product/product.type";
 
 export type ProductsStateType = {
     products: Product[],

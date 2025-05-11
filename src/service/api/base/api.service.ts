@@ -1,4 +1,4 @@
-import Constants from "../../constants/Constants";
+import Constants from "../../../constants/Constants";
 
 export default abstract class ApiService {
     private baseURL: string = Constants.API_BASE_URL;

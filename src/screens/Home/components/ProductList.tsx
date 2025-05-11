@@ -1,5 +1,5 @@
 import { FlatList, ListRenderItem, StyleSheet, Text, View } from "react-native"
-import type { Product } from "../../../service/product/product.type";
+import type { Product } from "../../../service/api/product/product.type";
 import { shallowEqual, useSelector } from "react-redux";
 import { selectProducts } from "../../../state/product/product.selector";
 import { useEffect } from "react";

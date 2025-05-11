@@ -1,4 +1,4 @@
-import ApiService from "../base/api.service";
+import ApiService from "../api/base/api.service";
 
 const PRODUCT_API_ENDPOINT = '/products';
 
