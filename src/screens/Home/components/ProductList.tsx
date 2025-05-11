@@ -24,17 +24,19 @@ export const SuggestionsList: React.FC = () => {
         }
     };
 
-    const renderListItem: ListRenderItem<Product> = ({ item }) => {
-        return <ProductListItem data={item} />
-    };
+    const renderListItem: ListRenderItem<Product> = ({ item }) => (<ProductListItem data={item} />);
 
     return (
         <View style={sytles.container}>
-            <Button title="Login" onPress={onPress}></Button>
+            {/* <Button title="Login" onPress={onPress}></Button> */}
             <FlatList
                 data={products}
                 renderItem={renderListItem}
-                />
+                keyExtractor={(item) => `${item.id}`}
+                numColumns={2}
+                columnWrapperStyle={sytles.row}
+                showsVerticalScrollIndicator={false}
+            />
         </View>
     );
 }
@@ -43,7 +45,10 @@ const sytles = StyleSheet.create({
     container: {
         flex: 1,
         width: 'auto',
-        borderColor: 'red',
-        borderWidth: 1,
-    }
+        marginBottom: 24,
+    },
+    row: {
+        padding: 4,
+        gap: 8,
+    },
 });
