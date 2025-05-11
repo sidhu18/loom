@@ -1,4 +1,5 @@
 export const Routes = {
     Home: 'Home',
-    Settings: 'Settings'
+    Settings: 'Settings',
+    ProductDetails: 'ProductDetails'
 } as const;

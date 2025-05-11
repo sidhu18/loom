@@ -2,6 +2,7 @@ import { createStaticNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from '../screens/Home/Home';
 import SettingsScreen from '../screens/Settings/Settings';
+import ProductDetailsScreen from '../screens/Home/ProductDetails/ProductDetailsScreen';
 import { Routes } from './routes';
   
   const RootStack = createNativeStackNavigator({
@@ -13,7 +14,8 @@ import { Routes } from './routes';
             title: 'Loom'
         }
       },
-      [Routes.Settings]: SettingsScreen
+      [Routes.Settings]: SettingsScreen,
+      [Routes.ProductDetails]: ProductDetailsScreen,
     },
   });
   

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text as ReactTextView, TextProps, StyleSheet, TextStyle } from 'react-native';
 
-type TextVariant = 'heading' | 'normal' | 'hint' | 'error' | 'caption';
+type TextVariant = 'heading1' | 'heading2' | 'heading3' | 'normal' | 'hint' | 'error' | 'caption';
 
 type AppTextProps = TextProps & {
   variant?: TextVariant,
@@ -27,12 +27,20 @@ const Text: React.FC<AppTextProps> = ({
 };
 
 const styles = StyleSheet.create({
-  heading: {
+  heading1: {
+    fontSize: 18,
+    color: '#222',
+  },
+  heading2: {
+    fontSize: 16,
+    color: '#222',
+  },
+  heading3: {
     fontSize: 14,
     color: '#222',
   },
   normal: {
-    fontSize: 12,
+    fontSize: 14,
     color: '#333',
   },
   hint: {

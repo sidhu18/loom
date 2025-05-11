@@ -7,10 +7,13 @@ import { useAppDispatch } from "../../../state/store";
 import { getProducts } from "../../../state/product/product.slice";
 import { ProductListItem } from "./ProductListItem";
 import { authorize } from "../../../service/auth/auth.service";
+import { useNavigation } from "@react-navigation/native";
+import { Routes } from "../../../navigation/routes";
 
 export const SuggestionsList: React.FC = () => {
     const products = useSelector(selectProducts, shallowEqual);
     const dispatch = useAppDispatch();
+    const navigation = useNavigation();
 
     useEffect(() => {
         dispatch(getProducts());
@@ -24,7 +27,12 @@ export const SuggestionsList: React.FC = () => {
         }
     };
 
-    const renderListItem: ListRenderItem<Product> = ({ item }) => (<ProductListItem data={item} />);
+    const onItemPress = (data: Product) => {
+        // @ts-ignore: Fix navigation typings
+        navigation.navigate(Routes.ProductDetails, { productId: data.id });
+    }
+
+    const renderListItem: ListRenderItem<Product> = ({ item }) => (<ProductListItem data={item} onItemPress={onItemPress}/>);
 
     return (
         <View style={sytles.container}>
