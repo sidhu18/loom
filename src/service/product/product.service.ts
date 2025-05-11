@@ -1,56 +1,12 @@
-import { Product } from "./product.type";
+import ApiService from "../base/api.service";
 
-class ProductService {
+const PRODUCT_API_ENDPOINT = '/products';
 
-    static productServiceInstance: ProductService;
+class ProductService extends ApiService {
 
-    public static createInstance() {
-        if (ProductService.productServiceInstance) {
-            return ProductService.productServiceInstance;
-        }
-        return new ProductService();
-    }
-
-    public getAll(): Product[] {
-        return [
-            {
-                id: 4,
-                title: "Handmade Fresh Table",
-                slug: "handmade-fresh-table",
-                price: 687,
-                description: "Andy shoes are designed to keeping in...",
-                category: {
-                    id: 5,
-                    name: "Others",
-                    image: "https://placehold.co/600x400",
-                    slug: "others"
-                },
-                images: [
-                    "https://placehold.co/600x400",
-                    "https://placehold.co/600x400",
-                    "https://placehold.co/600x400"
-                ]
-            },
-            {
-                id: 5,
-                title: "Handmade Fresh Cookies",
-                slug: "handmade-fresh-table",
-                price: 687,
-                description: "Cookies designed to keeping in...",
-                category: {
-                    id: 5,
-                    name: "Others",
-                    image: "https://placehold.co/600x400",
-                    slug: "others"
-                },
-                images: [
-                    "https://placehold.co/600x400",
-                    "https://placehold.co/600x400",
-                    "https://placehold.co/600x400"
-                ]
-            }
-        ]
+    async get<Product>(): Promise<Product> {
+        return this._get<Product>(PRODUCT_API_ENDPOINT);
     }
 }
 
-export default ProductService.createInstance();
+export default new ProductService();

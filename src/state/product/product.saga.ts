@@ -1,12 +1,11 @@
 import { call, put, takeLatest } from "redux-saga/effects";
 import { getProducts, setProducts } from "./product.slice";
-import productService from "../../service/product/product.service";
 import { Product } from "../../service/product/product.type";
+import productService from "../../service/product/product.service";
 
 function* fetchProducts() {
-    // Mocking dispatch action for testing
-    const mockRespose: Product[] = yield call(productService.getAll);
-    yield put(setProducts(mockRespose));
+    const products: Product[] = yield call([productService, productService.get]);
+    yield put(setProducts(products));
 }
 
 export function* watchProductSaga() {
