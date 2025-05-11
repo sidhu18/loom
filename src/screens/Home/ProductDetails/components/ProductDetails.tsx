@@ -3,6 +3,7 @@ import { Product } from "../../../../service/api/product/product.type"
 import Text from "../../../../theme/components/Text"
 import Carousel from "pinar";
 import { InfoChip } from "../../../../theme/components/InfoChip";
+import { SuggestedProducts } from "./SuggestedProducts";
 
 type Props = {
     product: Product,
@@ -20,6 +21,7 @@ export const ProductDetails: React.FC<Props> = ({ product }) => {
             <Text bold variant='heading3'>Description</Text>
             <Text variant='normal'>{product.description}</Text>
         </View>
+        <SuggestedProducts currentProductId={product.id} categoryId={product.category.id} />
     </View>
 }
 
