@@ -1,4 +1,4 @@
 export default {
-    API_BASE_URL: "https://api.escuelajs.co/api",
-    API_VERSION: "v1",
+    API_BASE_URL: process.env.API_BASE_URL ?? '',
+    API_VERSION: process.env.API_VERSION ?? '',
 }
