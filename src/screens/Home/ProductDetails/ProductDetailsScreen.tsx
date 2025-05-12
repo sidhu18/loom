@@ -1,20 +1,20 @@
 import { ScrollView, View } from "react-native";
 import { shallowEqual, useSelector } from "react-redux";
-import { selectProducts } from "../../../state/product/product.selector";
+import { selectSelectedProduct } from "../../../state/product/product.selector";
 import { ProductDetails } from "./components/ProductDetails";
+import { useEffect } from "react";
+import { useAppDispatch } from "../../../state/store";
+import { clearSelectedProductId } from "../../../state/product/product.slice";
 
-type ProductDetailsType = {
-    route: {
-        params: {
-            productId: number,
+const ProductDetailsScreen = () => {
+    const product = useSelector(selectSelectedProduct, shallowEqual);
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        return () => {
+            dispatch(clearSelectedProductId());
         }
-    }
-}
-
-const ProductDetailsScreen = (props: ProductDetailsType) => {
-    const currentProductId = props.route.params.productId;
-    const products = useSelector(selectProducts, shallowEqual);
-    const product = products.find((item) => item.id === currentProductId);
+    }, []);
 
     return (
         product ? <ScrollView style={{ flex: 1 }}>

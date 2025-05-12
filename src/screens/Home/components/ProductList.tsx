@@ -4,7 +4,7 @@ import { shallowEqual, useSelector } from "react-redux";
 import { selectProducts } from "../../../state/product/product.selector";
 import { useEffect } from "react";
 import { useAppDispatch } from "../../../state/store";
-import { getProducts } from "../../../state/product/product.slice";
+import { getProducts, setSelectedProductId } from "../../../state/product/product.slice";
 import { ProductListItem } from "./ProductListItem";
 import { useNavigation } from "@react-navigation/native";
 import { Routes } from "../../../navigation/routes";
@@ -19,6 +19,7 @@ export const SuggestionsList: React.FC = () => {
     }, []);
 
     const onItemPress = (data: Product) => {
+        dispatch(setSelectedProductId(data.id));
         // @ts-ignore: Fix navigation typings
         navigation.navigate(Routes.ProductDetails, { productId: data.id });
     }

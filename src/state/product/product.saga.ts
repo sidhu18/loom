@@ -1,13 +1,39 @@
-import { call, put, takeLatest } from "redux-saga/effects";
-import { getProducts, setProducts } from "./product.slice";
+import { call, put, select, takeLatest, takeLeading } from "redux-saga/effects";
+import { getProducts, getSuggestedProducts, ProductMapType, setProductMap, setProducts, setSuggestedProducts } from "./product.slice";
 import { Product } from "../../service/api/product/product.type";
 import productService from "../../service/api/product/product.service";
+import { selectProductMap, selectProducts, selectSelectedProduct, selectSelectedProductId, selectSuggestedProducts } from "./product.selector";
 
 function* fetchProducts() {
     const products: Product[] = yield call([productService, productService.get]);
+    const productMap: ProductMapType = {};
+    products.forEach((product) => {
+        productMap[product.id] = product;
+    });
     yield put(setProducts(products));
+    yield put(setProductMap(productMap));
+}
+
+function* getSuggestedProductSaga() {
+    const suggestedProducts: Product[] = yield select(selectSuggestedProducts);
+    if (!!suggestedProducts.length) { return }
+
+    const products: Product[] = yield select(selectProducts);
+    const selectedProduct: Product = yield select(selectSelectedProduct);
+    const selectedProductId = selectedProduct.id;
+    const selectedCategoryId = selectedProduct.category.id;
+    const suggestions = products.filter(
+                product => 
+                    product.category.id === selectedCategoryId &&
+                    product.id !== selectedProductId
+                );
+    yield put(setSuggestedProducts({
+        categoryId: selectedCategoryId,
+        products: suggestions,
+    }));
 }
 
 export function* watchProductSaga() {
     yield takeLatest(getProducts, fetchProducts);
+    yield takeLatest(getSuggestedProducts, getSuggestedProductSaga);
 }

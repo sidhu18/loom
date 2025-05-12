@@ -1,27 +1,18 @@
 import { shallowEqual, useSelector } from "react-redux";
-import { selectProducts } from "../../../../state/product/product.selector";
-import { useEffect, useState } from "react";
-import { Product } from "../../../../service/api/product/product.type";
+import { selectSuggestedProducts } from "../../../../state/product/product.selector";
+import { useEffect } from "react";
 import Text from "../../../../theme/components/Text";
 import { Image, ScrollView, StyleSheet, View } from "react-native";
-import { SuggestionsList } from "../../components/ProductList";
+import { getSuggestedProducts } from "../../../../state/product/product.slice";
+import { useAppDispatch } from "../../../../state/store";
 
-type Props = {
-    currentProductId: number,
-    categoryId: number,
-};
-
-export const SuggestedProducts: React.FC<Props> = ({ currentProductId, categoryId }) => {
-    const products = useSelector(selectProducts, shallowEqual);
-    const [suggestions, setSuggestions] = useState<Product[]>([]);
+export const SuggestedProducts: React.FC = () => {
+    const suggestions = useSelector(selectSuggestedProducts, shallowEqual);
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
-        if (products) {
-            const suggestedProducts = products.filter(
-                (product) => product.category.id === categoryId && product.id !== currentProductId);
-            setSuggestions(suggestedProducts)
-        }
-    }, [products]);
+        dispatch(getSuggestedProducts());
+    }, []);
 
     return <View style={styles.container}>
         <Text bold>Related Products</Text>

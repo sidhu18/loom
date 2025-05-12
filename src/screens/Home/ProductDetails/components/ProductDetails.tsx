@@ -21,7 +21,7 @@ export const ProductDetails: React.FC<Props> = ({ product }) => {
             <Text bold variant='heading3'>Description</Text>
             <Text variant='normal'>{product.description}</Text>
         </View>
-        <SuggestedProducts currentProductId={product.id} categoryId={product.category.id} />
+        <SuggestedProducts />
     </View>
 }
 
