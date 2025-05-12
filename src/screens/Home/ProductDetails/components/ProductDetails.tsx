@@ -17,7 +17,7 @@ export const ProductDetails: React.FC<Props> = ({ product }) => {
         <View style={sytles.detailsContainer}>
             <Text bold variant='heading1'>{product.title}</Text>
             <InfoChip value={product.category.name} />
-            <Text variant='heading2' style={sytles.priceText}>$ {product.price}</Text>
+            <Text variant='heading2' style={sytles.priceText}>{product.displayPrice}</Text>
             <Text bold variant='heading3'>Description</Text>
             <Text variant='normal'>{product.description}</Text>
         </View>

@@ -3,11 +3,19 @@ import { getProducts, getSuggestedProducts, ProductMapType, setProductMap, setPr
 import { Product } from "../../service/api/product/product.type";
 import productService from "../../service/api/product/product.service";
 import { selectProducts, selectSelectedProduct, selectSuggestedProducts } from "./product.selector";
+import { getUserLocaleInfo } from "../../utils/intl/locale";
 
 function* fetchProducts() {
     const products: Product[] = yield call([productService, productService.get]);
     const productMap: ProductMapType = {};
+    const { languageTag, currency } = getUserLocaleInfo();
+    const numberFormater = new Intl.NumberFormat(languageTag, {
+        style: 'currency',
+        currency,
+    });
     products.forEach((product) => {
+        const formatedPrice = numberFormater.format(product.price);
+        product.displayPrice = formatedPrice;
         productMap[product.id] = product;
     });
     yield put(setProducts(products));

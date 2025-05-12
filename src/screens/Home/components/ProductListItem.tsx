@@ -22,7 +22,7 @@ export const ProductListItem: React.FC<Props> = (props: Props) => {
                     <InfoChip value={data.category.name} />
                     <Text bold>{data.title}</Text>
                     <Text variant='caption' numberOfLines={2}>{data.description}</Text>
-                    <Text bold style={{ justifyContent: 'flex-end'}}>$ {data.price}</Text>
+                    <Text bold style={{ justifyContent: 'flex-end'}}>{data.displayPrice}</Text>
                 </View>
             </TouchableOpacity>
 }
