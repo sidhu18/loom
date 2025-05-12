@@ -1,8 +1,8 @@
-import { call, put, select, takeLatest, takeLeading } from "redux-saga/effects";
+import { call, put, select, takeLatest } from "redux-saga/effects";
 import { getProducts, getSuggestedProducts, ProductMapType, setProductMap, setProducts, setSuggestedProducts } from "./product.slice";
 import { Product } from "../../service/api/product/product.type";
 import productService from "../../service/api/product/product.service";
-import { selectProductMap, selectProducts, selectSelectedProduct, selectSelectedProductId, selectSuggestedProducts } from "./product.selector";
+import { selectProducts, selectSelectedProduct, selectSuggestedProducts } from "./product.selector";
 
 function* fetchProducts() {
     const products: Product[] = yield call([productService, productService.get]);
