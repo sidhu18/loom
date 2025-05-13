@@ -19,13 +19,15 @@ export type ProductsStateType = {
     productMap: ProductMapType,
     selectedProductId?: number,
     suggestedProductsMap: SuggestedProductsMap,
+    searchString?: string,
 };
 
 const initialState: ProductsStateType = {
     products: [],
     productMap: {},
     selectedProductId: undefined,
-    suggestedProductsMap: {}
+    suggestedProductsMap: {},
+    searchString: undefined,
 };
 
 const productsSlice = createSlice({
@@ -49,6 +51,12 @@ const productsSlice = createSlice({
         setSuggestedProducts: (state, action: PayloadAction<SuggestedProductsPayload>) => {
             const { categoryId, products } = action.payload;
             state.suggestedProductsMap[categoryId] = products;
+        },
+        setSearchString: (state, action: PayloadAction<string>) => {
+            state.searchString = action.payload;
+        },
+        clearSearchString: (state) => {
+            state.searchString = undefined;
         }
     }
 })
@@ -61,6 +69,8 @@ export const {
     clearSelectedProductId,
     getSuggestedProducts,
     setSuggestedProducts,
+    setSearchString,
+    clearSearchString,
 } = productsSlice.actions;
 
 export const productReducer = productsSlice.reducer;
