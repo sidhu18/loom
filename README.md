@@ -4,6 +4,11 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 > **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
 
+## Step 0: Configurations
+
+1. Create a .env file based on template.env file and add the configurations values.
+2. Create an application on [Auth0](https://auth0.com/) and add the OAUTH_DOMAIN and OAUTH_CLIENT_ID to configuration
+
 ## Step 1: Start Metro
 
 First, you will need to run **Metro**, the JavaScript build tool for React Native.
